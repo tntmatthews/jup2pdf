@@ -10,4 +10,5 @@ setup(name='jup2pdf',
     packages=['jup2pdf'],
     package_data={'latex': ['latex/*'],
         'latex/areva': ['latex/areva/*'],'latex/jupyter': ['latex/jupyter/*']},
+    scripts=['jup2pdf/jup2pdf.py'],
     zip_safe=False)
