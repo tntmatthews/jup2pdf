@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%             AREVA BibTeX Bibliography
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	      INSTRUCTIONS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	
+%	Directions for using this bibliography to reference an Areva document:
+%
+%	Make sure that the document is listed in this file (use CTRL+F to search for the Doc ID)
+%	In a LaTeX prepared document, type \cite{DOC NUMBER}, where "DOC NUMBER" is replaced
+%		 by the actual document number, without the doc ID prefix or the rev number postfix.
+%
+%		Example: To cite document 86-1266272-04, use "\cite{1266272}" without quotation marks.
+%		
+%	
+%	To reference a non-Areva document:
+%
+%	Find the document in this file (use CTRL+F to search for an ID number, or some other part of the name)
+%	Find the code immediately after the first "{" in the bibliography entry (labeled "CITATION" below)
+%	In a LaTeX prepared document, type \cite{CITATION}, where CITATION is replaced by the code
+%		from the bibliography entry.
+%
+%---------------------------------------------------------------------------------------------------------------------------------------------------------%
+%		
+%
+%	To use this bibliography, the following code should be placed in the LaTeX document and uncommented:
+%
+%		%----------- References Section ------------
+%		\renewcommand{\bibname}{References}
+%		\label{References}
+%		\bibliographystyle{Resources/latex/areva/areva}
+%		\bibliography{References} % reads References.bib
+%		%-------------------------------------------
+%	
+%	When the document is created, the reference list should appear where the code was placed in the document.  
+%	This is typically at the end of the document, but before any appendices.
+%
+%
+%---------------------------------------------------------------------------------------------------------------------------------------------------------%
+%
+%	Directions for adding to the reference list:
+%
+%		For any company documents, use the following syntax:
+@COMMENT{		manual{NUMBER,}
+%			author = company,
+%			note = "ID-NUMBER-REV"
+%			title = "TITLE"
+%			}
+%		replacing NUMBER, ID, REV, and TITLE with the appropriate document number, doc ID, revision number, and title of the document.  The string "company" is a variable that has the current name of Areva (or whatever the current company name is).
+%
+%		For any other documents, use the following syntax:
+@COMMENT{		@manual{CITATION,}
+%			author = "",
+%			note = "ENTIRE CITATION"
+%			title = ""
+%			}
+%		Where ENTRIE CITATION is the entire citation, in the appropriate format.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+@string {company = "AREVA Document"}
+@manual{0402-01,
+	author = company,
+	note = "\href{http://intranet.adom.ad.corp/repository/ftgdoc/ftgprocedure/040201.PDF}{0402-01 Rev 50}",
+	title = "Administrative Proceure - Calculations"
+	}
+@manual{0405-35,
+	author = company,
+	note = "\href{http://intranet.adom.ad.corp/repository/ftgdoc/fcfprocedure/040535.PDF}{0405-35 Rev 02}",
+	title = "US Fuel Business Unit Procedure - Engineering Guideline Modification Request (GMR) System"
+	}
+% Following are examples
+@manual{EMF-2994,
+	author =company,
+	note ="EMF-2994 (P)",
+	title ="RODEX4: Thermal-Mechanical Fuel Performance Code, Theory Manual, pp. 7-9"
+	}
+@manual{FS1-0019553,
+	author = company,
+	note = "FS1-0019553 Rev 1.0",
+	title = "Measurement of Fundamental Thermal Properties of Cr2O3 and Gd2O3 doped fuels"
+	}
+@manual{Christensen,
+	author ="{J.A. Christensen et al.}",
+	note ="ANS Transactions, Vol 5, The Velocity of Rising Steam in a Bubbling Two-Phase Mixture",
+	title =""
+	}
+@manual{MATPRO,
+	author = "L.J. Siekfen and E.W. Coryell and E.A. Harvego and J.K. Horst",
+	note = "SCDAP/RELAP5/MOD3.3 Code Manual, MATPRO - A Library of Material Properties for Light-Water Reactor Accident Analysis",
+	title = "NUREG/CR-6150, Vol. 4, Rev. 2.0 and INEL-96/0422, January 2001"
+	}

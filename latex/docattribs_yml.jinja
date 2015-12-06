@@ -1,0 +1,46 @@
+template:
+    dir: "latex"
+    name: "%{{ doc_type %}}_tex.jinja"
+doc:
+    draft: True
+    type: "%{{ doc_type %}}"
+    id: "%{{ doc_id %}}"
+    title: "Document Title"
+    category: "DAD - Design Analysis Document"
+    author:
+        - "EINSTEIN Albert"
+        - "CURIE Marie"
+    authororg:
+        - "RS/IB"
+        - "FE/FL"
+    reviewer:
+        - ""
+    reviewerorg:
+        - ""
+    approver: "BOHR Neils"
+    approverorg: "FE/FL"
+    France: False
+    USA: True
+    Germany: False
+    revision:
+        -
+            id: "1.0"
+            date: "see 1$^{st}$ page release date"
+            note: "New Document"
+
+path:
+    - /uf5/ghh/usrlocal/texlive2010/bin/x86_64-linux
+
+texinputs:
+    - /uf5/ghh/usrlocal
+    - /uf5/ghh/public/latex/shared/latex
+    - latex/jupyter
+
+commands:  # to be passed in by script with fname tacked on
+    - bibtex
+    - pdflatex  # -interaction='nonstopmode'
+    - bibtex
+    #- makeglosseries
+    - pdflatex
+    - bibtex
+    - pdflatex

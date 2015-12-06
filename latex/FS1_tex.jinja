@@ -1,0 +1,152 @@
+\documentclass[english, 11pt, headings=big]{scrartcl}
+
+\usepackage[dvips]{color}
+\usepackage[stamp
+           ]{areva_np}[2011-01-01]
+
+\usepackage[format=hang,
+            labelfont=bf
+           ]{caption}[2004/01/23]
+\usepackage[titles]{tocloft}
+\usepackage[T1]{fontenc}
+
+\input{%{{ jupyter_name %}}_pre.tex}
+% insert jupyter preamble after other usepackages with options
+% w/ exception of inputenc which does a \usepackage []{ucs}
+
+\usepackage[utf8x]{inputenc}
+
+\usepackage{pstricks}
+\usepackage{amsmath}
+\usepackage{array}
+%\usepackage{bibgerm}
+\usepackage{cite}
+\usepackage{xspace}
+\usepackage{changebar}
+
+%{- if doc.draft == True -%}
+\usepackage{draftwatermark}
+\SetWatermarkScale{2}
+\SetWatermarkLightness{0.8}
+\SetWatermarkText{\shortstack{DRAFT  \\[0.5cm] {\fontsize{38}{12}\selectfont 
+%\selectlanguage{<language>}
+\today}%, \printtime
+}}
+%{- endif -%}
+
+\listfiles                                      
+
+\selectlanguage{english}
+
+\let\clipbox\relax
+
+
+%-------------------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------------------
+\anpref{FS1--%{{ doc.id %}}}
+
+\anprev{%{{ doc.revision[0].id %}}}
+
+\anptitle{%{{ doc.title %}}}
+\anpinfo{%{{ doc.additional_info %}}\\
+}
+
+\anpproject{%{{ doc.project %}}}
+\anphandling{%{{ doc.handling %}}}
+\anptype{%{{ doc.category %}}}
+
+\anpheadertype{}
+\anpheadertitle{}
+
+\anpdistentry{see last section}{}
+
+\anpauthor{\parbox[h]{40mm}{\center{
+%{- set counter = 0 %}
+%{- for author in doc.author %}
+%{- set counter = counter + 1 %}
+%{- if counter > 1 -%}
+,\\
+%{- endif -%}
+%{{ author %}}
+%{- endfor -%}
+}}}{}{
+%{- set counter = 0 %}
+%{- for org in doc.authororg %}
+%{- set counter = counter + 1 %}
+%{- if counter > 1 -%}
+,
+%{- endif -%}
+%{{ org %}}
+%{- endfor -%}
+}
+\anpreviewer{{
+%{- set counter = 0 %}
+%{- for reviewer in doc.reviewer %}
+%{- set counter = counter + 1 %}
+%{- if counter > 1 -%}
+,\\
+%{- endif -%}
+%{{ reviewer %}}
+%{- endfor -%}
+}}{}{
+%{- set counter = 0 %}
+%{- for org in doc.reviewerorg %}
+%{- set counter = counter + 1 %}
+%{- if counter > 1 -%}
+,
+%{- endif -%}
+%{{ org %}}
+%{- endfor -%}
+}
+\anpapprover{%{{ doc.approver %}}}{}{%{{ doc.approverorg %}}}
+
+%{- if doc.Germany == True -%}
+\anpregiongermany
+%{- endif -%}
+%{- if doc.France == True -%}
+\anpregionfrance
+%{- endif -%}
+%{- if doc.USA == True -%}
+\anpregionusa
+%{- endif -%}
+
+\anpownerinc
+
+\anpexal{0E001}
+\anpexeccn{0E001}
+\anpsafety
+\anpfront
+
+\begin{anpchanges}
+%{- for rev in doc.revision %}
+  \anpchangeline{\makebox[23mm][c]{%{{ rev.id %}}}}{ %{{ rev.date %}}}{
+    \parbox[t]{110mm}{
+     %{{ rev.note %}}
+    }
+  }
+%{- endfor %}  
+\end{anpchanges}  
+\clearpage
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+
+\normalmarginpar
+\setcounter{table}{0}
+
+\input{%{{ jupyter_name %}}_main.tex}
+
+\clearpage
+\section{References}
+\renewcommand{\bibname}{References} % changes the header; default: Bibliography
+\bibliographystyle{Resources/latex/areva/areva}
+\bibliography{%{{ jupyter_name %}}}
+
+\clearpage
+\include{%{{ jupyter_name %}}_dist}
+
+\end{document}

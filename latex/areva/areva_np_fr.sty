@@ -1,0 +1,1174 @@
+%%
+%% This is file `areva_np.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% areva_np.dtx 
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from areva_np.sty.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file areva_np.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\PackageFileDef $#1: #2.#3${%
+   \expandafter\gdef\csname Package@#1\endcsname{#2}}
+\def\PackageInfoDef $#1: #2 #3${%
+   \expandafter\gdef\csname Package@#1\endcsname{#2}}
+\PackageFileDef $RCSfile: areva_np.dtx,v $
+\PackageInfoDef $Revision: 1cdf909c3456 $
+\PackageInfoDef $Date: 2012/01/13 09:36:56 $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{\Package@RCSfile}
+   [\Package@Date\space \Package@Revision\space
+    AREVA NP GmbH LaTeX-Style]
+\newcommand*{\ArevaNPPackageRevision}{\Package@Revision}
+\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\RequirePackage{ifpdf}
+\ifpdf
+   \RequirePackage[pdftex]{graphicx}
+\else
+   \RequirePackage[dvips]{graphicx}
+\fi
+\RequirePackage{scrpage}
+\RequirePackage{longtable}
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+\RequirePackage{babel}
+\RequirePackage[24h]{scrtime}
+\ifpdf
+   \RequirePackage{hyperref}
+   \pdfadjustspacing=1
+\fi
+\RequirePackage{array}
+\typeout{^^J
+         Package: \Package@RCSfile, Copyright (C) AREVA NP GmbH,
+         2003-2012^^J
+         ^^J
+         \space\space\space\space\space\space\space\space Author:
+         Th. Wedekind, FDN-G^^J
+         ^^J
+         \space\space\space Contributor: H.-W. Bolloni, FDN-G^^J
+         ^^J
+         \space\space\space\space\space\space\space Contact:
+         thomas.wedekind@areva.com^^J
+         ^^J
+         \space THIS IS THE OFFICIAL AREVA NP GmbH LaTeX STYLE^^J
+        }
+\newlength{\logo@raise}
+\setlength{\logo@raise}{-10mm}
+\newlength{\logo@height}
+\setlength{\logo@height}{19mm}
+\newlength{\logo@space}
+\setlength{\logo@space}{14mm}
+\newcommand*{\logo@rule}{}
+\newboolean{template@german}
+\iflanguage{german}{   % Language: german
+   \selectlanguage{german}
+   %
+   \setboolean{template@german}{true}
+   %
+   \def\fslang@legalnote{\copyright\,\textbf{AREVA NP \@anpowner}\par
+     Weitergabe sowie Vervielf\"altigung, Verbreitung und/oder
+     Bearbeitung dieses Dokumentes, Verwertung und Mitteilung seines
+     Inhaltes sind verboten, soweit nicht ausdr\"ucklich
+     gestattet. Zuwiderhandlungen verpflichten zu Schadenersatz. Alle
+     Rechte f\"ur den Fall der Patent--, Gebrauchsmuster-- oder
+     Geschmacksmustereintragung vorbehalten.}
+   \def\fslang@identification{IDENTIFIKATIONSNUMMER}
+   \def\fslang@revision{REVISION}
+   \def\fslang@pages{GESAMTSEITENZAHL:}
+   \def\fslang@info{ZUS\"ATZLICHE INFORMATION:}
+   \def\fslang@project{PROJEKT}
+   \def\fslang@distribution{VERTEILUNG AN}
+   \def\fslang@purpose{VERTEILUNGSZWECK}
+   \def\fslang@handling{HANDHABUNG}
+   \def\fslang@category{KATEGORIE}
+   \def\fslang@status{STATUS}
+   \def\fslang@roles{ROLLE}
+   \def\fslang@names{NAME}
+   \def\fslang@dates{DATUM}
+   \def\fslang@organizations{ORG.~EINHEIT}
+   \def\fslang@signatures{UNTERSCHRIFT}
+   \def\fslang@author{\scriptsize{AUTOR}}
+   \def\fslang@reviewer{\scriptsize{PRUEFER}}
+   \def\fslang@approver{\scriptsize{FREIGEBENDER}}
+   \def\fslang@extapprover{\parbox{22.5mm}{\scriptsize{EXTERN\\[-1pt] FREIGEBENDER}}}
+   \def\fslang@release{FREIGABE DATEN / QUALIFIZIERTE UNTERSCHRIFT}
+   \def\fslang@regionsnote{%
+     {\footnotesize\textbf{LENKUNG VON \"ANDERUNGEN}}\\[4pt]
+     Wird dieses Dokument \"uberarbeitet, muss es in folgenden Regionen
+     \mbox{gepr\"uft} oder freigegeben werden:}
+   \def\fslang@france{Frankreich:}
+   \def\fslang@usa{USA:}
+   \def\fslang@germany{Deutschland:}
+   \def\fslang@summaryofchanges{\"ANDERUNGSVERZEICHNIS}
+   \def\fslang@socrevision{REVISION}
+   \def\fslang@socdate{DATUM}
+   \def\fslang@socnotes{\"ANDERUNGSBESCHREIBUNG}
+   \def\fslang@headerid{Nr.}
+   \def\fslang@headerrev{Rev.}
+   \def\fslang@headerhandling{Handhabung:}
+   \def\fslang@headerpage{Seite}
+   \def\fslang@footertext{\scriptsize AREVA NP --- Fuel BU\\[-0.5ex]
+      {\tiny Dieses Blatt unterliegt den Weitergabebeschr\"ankungen
+       wie auf der Titelseite bzw.~ersten Seite angegeben.}}
+   \def\fslang@page{Seite: }
+   \def\fslang@pageof{von }
+   \def\fslang@acknowledgment{Danksagungen}
+   \def\fslang@abbrev{Liste der Abk\"urzungen}
+   \def\fslang@abbrevabb{Abk\"urzung}
+   \def\fslang@abbrevexp{Erl\"auterung}
+}{\iflanguage{english}{% Language: english
+   \selectlanguage{english}
+   \def\fslang@identification{IDENTIFICATION}
+   \def\fslang@revision{REVISION}
+   \def\fslang@pages{TOTAL NUMBER OF PAGES:}
+   \def\fslang@info{ADDITIONAL INFORMATION:}
+   \def\fslang@project{PROJECT}
+   \def\fslang@distribution{DISTRIBUTION TO}
+   \def\fslang@purpose{PURPOSE OF DISTRIBUTION}
+   \def\fslang@handling{HANDLING}
+   \def\fslang@category{CATEGORY}
+   \def\fslang@status{STATUS}
+   \def\fslang@roles{ROLES}
+   \def\fslang@names{NAMES}
+   \def\fslang@dates{DATES}
+   \def\fslang@organizations{ORGANIZATIONS}
+   \def\fslang@signatures{SIGNATURES}
+   \def\fslang@author{AUTHOR}
+   \def\fslang@reviewer{REVIEWER}
+   \def\fslang@approver{APPROVER}
+   \def\fslang@release{RELEASE DATA:}
+   \def\fslang@regionsnote{%
+     {\footnotesize\textbf{CHANGE CONTROL RECORDS:}}\\[4pt]
+     This document, when revised, must be reviewed or approved by the
+     following regions:}
+   \def\fslang@legalnote{\bfseries This document, including the
+     information contained herein, is the property of AREVA NP
+     \@anpownersas\ (ANP). It contains proprietary information and, except for ANP
+     affiliated companies, it may not be reproduced or copied in whole
+     or in part nor may it be furnished to others without the prior
+     written permission of ANP. In any case, any re--exportation of
+     the documents shall be subject to the prior written permission of
+     ANP. It may not be used in any way that is or may be injurious to
+     ANP. This document and any copies that may have been made must be
+     returned upon request. \copyright\,AREVA NP \@anpownersas}
+   \def\fslang@france{France:}
+   \def\fslang@usa{USA:}
+   \def\fslang@germany{Germany:}
+   \def\fslang@summaryofchanges{REVISIONS}
+   \def\fslang@socrevision{REVISION}
+   \def\fslang@socdate{DATE}
+   \def\fslang@socnotes{EXPLANATORY NOTES}
+   \def\fslang@headerid{N$^o$}
+   \def\fslang@headerrev{Rev.}
+   \def\fslang@headerhandling{Handling:}
+   \def\fslang@headerpage{Page}
+   \def\fslang@footertext{\scriptsize AREVA NP --- Fuel BU\\[-0.5ex]
+     {\tiny This document is subject to the restrictions set forth
+     on the first or title page.}}
+   \def\fslang@page{Page: }
+   \def\fslang@pageof{of }
+   \def\fslang@acknowledgment{Acknowledgments}
+   \def\fslang@abbrev{List of Abbreviations}
+   \def\fslang@abbrevabb{Abbreviation}
+   \def\fslang@abbrevexp{Explanation}
+}{\iflanguage{french}{% Language: french
+   \selectlanguage{french}
+   \def\fslang@identification{IDENTIFICATION}
+   \def\fslang@revision{REVISION}
+   \def\fslang@pages{NOMBRE TOTAL DE PAGES:}
+   \def\fslang@info{INFORMATION ADDITIONNELLE:}
+   \def\fslang@project{\scriptsize{PROJET}}
+   \def\fslang@distribution{DISTRIBUTION}
+   \def\fslang@purpose{BUT DE LA DISTRIBUTION}
+   \def\fslang@handling{\scriptsize{CLASSIFICATION}}
+   \def\fslang@category{\scriptsize{CATEGORIE}}
+   \def\fslang@status{\scriptsize{STATUT}}
+   \def\fslang@roles{ROLES}
+   \def\fslang@names{NOMS}
+   \def\fslang@dates{DATES}
+   \def\fslang@organizations{ORGANISATIONS}
+   \def\fslang@signatures{SIGNATURES}
+   \def\fslang@author{\scriptsize{AUTEUR}}
+   \def\fslang@reviewer{\scriptsize{VERIFICATEUR}}
+   \def\fslang@approver{\scriptsize{APPROBATEUR}}
+   \def\fslang@release{AUTRES DONNEES:}
+   \def\fslang@regionsnote{%
+     {\footnotesize\textbf{CONTROLE DES MODIFICATIONS:}}\\[4pt]
+     Ce document, quand il est r\'evis\'e, doit \^{e}tre v\'erifi\'e et
+     approuv\'e par les r\'egions suivantes :}
+   \def\fslang@legalnote{\bfseries Ce document, y compris l'information
+     contenue ici, est la propri\'et\'e d'AREVA NP \@anpownersas\ (ANP). Il contient
+     l'information de marque d\'epos\'ee et, except\'ees les soci\'et\'es
+     affili\'ees ANP, il ne peut \^{e}tre reproduit ou copi\'e enti\`erement
+     ou partiellement ni \^{e}tre pourvu\'e d'autres sans la permission
+     \'ecrite ant\'erieure d'ANP. Dans tous les cas, n'importe quelle
+     r\`e--exportation des documents sera soumise \`a la permission \'ecrite
+     ant\'erieure d'ANP. Il ne peut \^{e}tre utilis\'e d'aucune fa\c{c}on
+     qui est ou peut \^{e}tre nuisible \`a ANP. Ce document et n'importe
+     quelles copies qui peuvent avoir \'et\'e faites doivent \^{e}tre
+     rendus \`a la demande. \copyright\,AREVA NP \@anpownersas}
+   \def\fslang@france{France:}
+   \def\fslang@usa{USA:}
+   \def\fslang@germany{Allemagne:}
+   \def\fslang@summaryofchanges{REVISIONS}
+   \def\fslang@socrevision{REVISION}
+   \def\fslang@socdate{DATE}
+   \def\fslang@socnotes{NOTES}
+   \def\fslang@headerid{N$^o$}
+   \def\fslang@headerrev{Rev.}
+   \def\fslang@headerhandling{Classification:}
+   \def\fslang@headerpage{Page}
+   \def\fslang@footertext{\scriptsize AREVA NP --- Fuel BU}
+   \def\fslang@page{Page: }
+   \def\fslang@pageof{of }
+   \def\fslang@acknowledgment{Acknowledgments}
+   \def\fslang@abbrev{List of Abbreviations}
+   \def\fslang@abbrevabb{Abbreviation}
+   \def\fslang@abbrevexp{Explanation}
+}{ % Language: other
+   \PackageError{\Package@RCSfile}
+      {No language supported by the \Package@RCSfile style has been
+         defined!}
+      {Currently supported languages are: german, english, french.}
+}}}
+\DeclareOption{stamp}{%
+   \AtBeginDocument{%
+      \@ifundefined{RCSRevision}{%
+         \newcommand*{\RCSRevision}{}}{}
+      \@ifundefined{thisdate}{%
+         \newcommand*{\thisdate}
+            {\number\day.\number\month.\number\year}}{}
+      \@ifundefined{@stamp}{%
+         \newcommand*{\@stamp}
+            {\tiny\thisdate\ \thistime\ \RCSRevision}}{%
+            \renewcommand*{\@stamp}
+               {\tiny\thisdate\ \thistime\ \RCSRevision}}}
+}
+\DeclareOption{nostamp}{%
+    \AtBeginDocument{%
+        \@ifundefined{@stamp}{%
+            \newcommand*{\@stamp}{}}{%
+            \renewcommand*{\@stamp}{}}}
+}
+\ExecuteOptions{nostamp}
+\ProcessOptions
+\typearea{14}
+\renewcommand{\familydefault}{cmss}
+\renewcommand{\headfont}{\normalfont\sffamily}
+\renewcommand{\pnumfont}{\normalfont\sffamily}
+\setlength{\parskip}{1ex plus0.5ex minus0.2ex}
+\setlength{\parindent}{0em}
+\setlength{\footskip}{10mm}
+\setlength{\topskip}{3mm}
+\setlength{\topmargin}{-17mm}
+\setlength{\headheight}{19mm}
+\addtolength{\textheight}{-5mm}
+\setlength{\marginparwidth}{12mm}
+\setlength{\marginparsep}{5mm}
+\newlength{\@framesepmodifier}\setlength{\@framesepmodifier}{-3mm}
+\addtolength{\oddsidemargin}{\@framesepmodifier}
+\newlength{\@framesep}
+\setlength{\@framesep}{-11.5mm - \@framesepmodifier}
+\newlength{\@titleframehsep}
+\setlength{\@titleframehsep}{-10.0mm - \@framesepmodifier}
+\renewcommand*\bib@heading{%
+    \@mkboth{\bibname}{\bibname}}
+\newcommand*{\anptype}[1]{\renewcommand{\@anptype}{\scriptsize #1}}
+\newcommand*{\anptitle}[1]{\renewcommand{\@anptitle}{\Large\textbf{#1}}}
+\newcommand*{\anpinfo}[1]{\renewcommand{\@anpinfo}{\normalfont #1}}
+\newcommand*{\anpstatus}[1]{\renewcommand{\@anpstatus}{\scriptsize #1}}
+\newcommand*{\anpexal}[1]{\renewcommand{\@anpexal}{#1}}
+\newcommand*{\anpexeccn}[1]{\renewcommand{\@anpexeccn}{#1}}
+\newcommand*{\anpref}[1]{\renewcommand{\@anpref}{\normalfont #1}
+                \renewcommand{\@anptitleref}{\bfseries\large #1}}
+\newcommand*{\anprev}[1]{\renewcommand{\@anprev}{\normalfont #1}
+                \renewcommand{\@anptitlerev}{\bfseries\large #1}}
+\newcommand*{\anpproject}[1]
+  {\renewcommand{\@anpproject}{\scriptsize #1}}
+\newcommand*{\anpauthor}[4]{%
+  \renewcommand{\@authorname}{\footnotesize #1}%
+  \renewcommand{\@authordate}{\footnotesize #2}%
+  \renewcommand{\@authororg} {\footnotesize #3}%
+  \renewcommand{\@authorsign}{\footnotesize #4}%
+}
+\newcommand*{\anpreviewer}[4]{%
+  \renewcommand{\@reviewername}{\footnotesize #1}%
+  \renewcommand{\@reviewerdate}{\footnotesize #2}%
+  \renewcommand{\@reviewerorg} {\footnotesize #3}%
+  \renewcommand{\@reviewersign}{\footnotesize #4}%
+}
+\newcommand*{\anpapprover}[4]{%
+  \renewcommand{\@approvername}{\footnotesize #1}%
+  \renewcommand{\@approverdate}{\footnotesize #2}%
+  \renewcommand{\@approverorg} {\footnotesize #3}%
+  \renewcommand{\@approversign}{\footnotesize #4}%
+}
+\newcommand*{\anpextapprover}[4]{%
+  \renewcommand{\@extapprovername}{\footnotesize #1}%
+  \renewcommand{\@extapproverdate}{\footnotesize #2}%
+  \renewcommand{\@extapproverorg} {\footnotesize #3}%
+  \renewcommand{\@extapproversign}{\footnotesize #4}%
+}
+\newcommand*{\anphandling}[1]{\renewcommand{\@anphandling}{#1}}
+\newcommand*{\anprelease}[1]{\renewcommand{\@anprelease}{#1}}
+\newcommand*{\anpregionfrance}
+  {\renewcommand{\@anpregionfrance}{\scriptsize Y}}
+\newcommand*{\anpregiongermany}
+  {\renewcommand{\@anpregiongermany}{\scriptsize Y}}
+\newcommand*{\anpregionusa}
+  {\renewcommand{\@anpregionusa}{\scriptsize Y}}
+\newcommand*{\anpownerinc}
+  {\renewcommand{\@anpowner}{\@anpownerinc}}
+\newcommand*{\anpownergmbh}
+  {\renewcommand{\@anpowner}{\@anpownergmbh}}
+\newcommand*{\anpownersas}
+  {\renewcommand{\@anpowner}{\@anpownersas}}
+\newcommand{\anpchangeline}[3]{\normalfont #1 & #2 & #3 \\ \cline{1-3}}
+\newcommand*\theappendix{\@arabic\c@appendix}
+\newcommand*\thereppages{\@arabic\c@reppages}
+\def\lastapp@putlabel{%
+   \ifpdf
+      \immediate\write\@auxout{\string
+      \newlabel{LastAppendix}{{}{\theappendix}{}{}{}}}%
+   \else
+      \immediate\write\@auxout{\string
+      \newlabel{LastAppendix}{{}{\theappendix}}}%
+   \fi
+   \addtocounter{page}{-1}
+   \ifpdf
+      \immediate\write\@auxout{\string
+      \newlabel{count\theappendix}{{}{\thepage}{}{}{}}}%
+   \else
+      \immediate\write\@auxout{\string
+      \newlabel{count\theappendix}{{}{\thepage}}}%
+   \fi
+   \setcounter{lastpage}{\thepage}
+   \ifpdf
+      \immediate\write\@auxout{\string
+      \newlabel{LastPage}{{}{\thelastpage}{}{}{}}}%
+   \else
+      \immediate\write\@auxout{\string
+      \newlabel{LastPage}{{}{\thelastpage}}}%
+   \fi
+   }
+\AtEndDocument{%
+   \message{AED: Setting LastPage and LastAppendix}%
+   \clearpage\lastapp@putlabel}%
+\newcommand*{\@anptype}{}
+\newcommand*{\@anptitle}{}
+\newcommand*{\@anpinfo}{}
+\newcommand*{\@anpstatus}{}
+\newcommand*{\@anpexeccn}{}
+\newcommand*{\@anpexal}{}
+\newcommand*{\@anpref}{}
+\newcommand*{\@anptitleref}{}
+\newcommand*{\@anprev}{}
+\newcommand*{\@anptitlerev}{}
+\newcommand*{\@anpproject}{}
+\newcommand*{\@authorname}{}
+\newcommand*{\@authordate}{}
+\newcommand*{\@authororg}{}
+\newcommand*{\@authorsign}{}
+\newcommand*{\@reviewername}{}
+\newcommand*{\@reviewerdate}{}
+\newcommand*{\@reviewerorg}{}
+\newcommand*{\@reviewersign}{}
+\newcommand*{\@approvername}{}
+\newcommand*{\@approverdate}{}
+\newcommand*{\@approverorg}{}
+\newcommand*{\@approversign}{}
+\newcommand*{\@extapprovername}{}
+\newcommand*{\@extapproverdate}{}
+\newcommand*{\@extapproverorg}{}
+\newcommand*{\@extapproversign}{}
+\newcommand*{\@anphandling}{}
+\newcommand*{\@anprelease}{}
+\newcommand*{\@anpregiongermany}{\scriptsize N}
+\newcommand*{\@anpregionfrance}{\scriptsize N}
+\newcommand*{\@anpregionusa}{\scriptsize N}
+\newcommand*{\@anpownergmbh}{GmbH}
+\newcommand*{\@anpownersas}{SAS}
+\newcommand*{\@anpownerinc}{INC.}
+\newcommand*{\@anpowner}{\@anpownergmbh}
+\newcounter{appendix}
+\newcounter{reppages}
+\newcounter{lastpage}
+\advance\topmargin by 2mm
+\advance\textwidth by 1cm
+\newlength{\pageframewidth}
+\setlength{\pageframewidth}{\textwidth}\advance\pageframewidth by 16mm
+\newlength{\footboxwidth}
+\setlength{\footboxwidth}{\pageframewidth}\advance\footboxwidth by 0.75pt
+\newsavebox{\logobox}\sbox{\logobox}{\includegraphics[height=11mm]{areva}}
+\newpagestyle{anp}
+{% head
+ (\textwidth,0pt)% upper line
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% even page
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% odd page
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% single page
+ (\textwidth,0pt)% lower line
+}
+{% foot
+ (\textwidth,0pt)% upper line
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% even page
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% odd page
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% single page
+ (\textwidth,0pt)% lower line
+}
+\renewpagestyle{plain}
+{% head
+ (\textwidth,0pt)% upper line
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% even page
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% odd page
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% single page
+ (\textwidth,0pt)% lower line
+}
+{% foot
+ (\textwidth,0pt)% upper line
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% even page
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% odd page
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% single page
+ (\textwidth,0pt)% lower line
+}
+\renewpagestyle{empty}
+{% head
+ (\textwidth,0pt)% upper line
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% even page
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% odd page
+ {\hspace*{\@framesep}%
+  \setlength{\tabcolsep}{0pt}%
+  \begin{tabular}{|ll|r|}\hline
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{-1mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerid\quad{\normalsize\@anpref}}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{9mm}\hspace*{0mm}
+      \raisebox{3mm}{%
+        \footnotesize\fslang@headerrev~{\normalsize\@anprev}}
+    } & \\ \cline{1-2}
+    \makebox[52mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{-1mm}
+      \raisebox{4mm}{%
+        \scriptsize\fslang@headerhandling~\@anphandling}
+    } &
+    \makebox[22mm][l]{
+      \rule[0mm]{0mm}{11mm}\hspace*{0mm}
+      \raisebox{4mm}{%
+        \footnotesize\fslang@headerpage~\pagemark/\pageref{LastPage}}} &
+    \raisebox{5mm}[0mm][0mm]{\usebox{\logobox}}\hspace*{4mm}\\ \hline
+    \multicolumn{3}{|c|}{%
+      \makebox[\pageframewidth]{\rule[0mm]{0mm}{246mm}}}\\ \hline
+  \end{tabular}
+}% single page
+ (\textwidth,0pt)% lower line
+}
+{% foot
+ (\textwidth,0pt)% upper line
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% even page
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% odd page
+ {\raisebox{-9.3mm}{%
+    \hspace*{\@framesep}\parbox{\footboxwidth}{%
+    \framebox[\footboxwidth][c]{\rule{0mm}{3mm}%
+      \raisebox{0.7mm}{%
+        \parbox{\footboxwidth}{\centering\fslang@footertext}}}\\[-1mm]
+    \makebox[\footboxwidth][l]{\@stamp}}}}% single page
+ (\textwidth,0pt)% lower line
+}
+\newpagestyle{anpfront}
+{% head
+ (\textwidth,0pt)% upper line
+ {}{}{}
+ (\textwidth,0pt)% lower line
+}
+{% foot
+ (\textwidth,0pt)% upper line
+ {}{}{}
+ (\textwidth,0pt)% lower line
+}
+\pagestyle{anp}
+\newlength{\modifier@columnOne}
+\newlength{\width@fslanghandling}
+\newlength{\width@fslangcategory}
+\settowidth{\width@fslanghandling}
+  {\textbf{\footnotesize\fslang@handling}}
+\settowidth{\width@fslangcategory}
+  {\textbf{\footnotesize\fslang@category}}
+\newlength{\modifier@columnTwo}
+\newlength{\width@project}
+\newlength{\width@handling}
+\newlength{\width@anptype}
+\newlength{\width@anpstatus}
+\settowidth{\width@project}{\@anpproject}
+\settowidth{\width@handling}{\scriptsize\@anphandling}
+\settowidth{\width@anptype}{\@anptype}
+\settowidth{\width@anpstatus}{\@anpstatus}
+\newlength{\@modifier}
+\newlength{\temp@max}
+\ifthenelse{\lengthtest
+     {\width@fslanghandling > \width@fslangcategory}}{%
+  \ifthenelse{\lengthtest{\width@fslanghandling > 20mm}}{%
+    \setlength{\modifier@columnOne}{\width@fslanghandling - 20mm}}{%
+    \setlength{\modifier@columnOne}{0mm}}}{%
+  \ifthenelse{\lengthtest{\width@fslangcategory > 20mm}}{%
+    \setlength{\modifier@columnOne}{\width@fslangcategory - 20mm}}{%
+    \setlength{\modifier@columnOne}{0mm}}}
+\ifthenelse{\lengthtest{\width@project > \width@handling}}{%
+  \setlength{\temp@max}{\width@project}}{%
+  \setlength{\temp@max}{\width@handling}}
+\ifthenelse{\lengthtest{\width@anptype > \temp@max}}{%
+  \setlength{\temp@max}{\width@anptype}}{}
+\ifthenelse{\lengthtest{\width@anpstatus > \temp@max}}{%
+  \setlength{\temp@max}{\width@anpstatus}}{}
+\ifthenelse{\lengthtest{\temp@max > 30.5mm}}{%
+  \setlength{\modifier@columnTwo}{\temp@max - 30.5mm}}{%
+  \setlength{\modifier@columnTwo}{0mm}}
+\setlength{\@modifier}
+  {(\modifier@columnOne + \modifier@columnTwo) * \real{0.5}}
+\newlength{\distentryheight}
+\newlength{\distentrydepth}
+\newsavebox{\distboxtmp}
+\newsavebox{\distboxdistrib}
+\newsavebox{\distboxpurpose}
+\newcommand{\anpdistentry}[2]{%
+  \sbox{\distboxtmp}{%
+    \parbox[c][\height+\depth][s]{63.5mm - \@modifier}
+      {\vspace*{1pt}\vfill\scriptsize\sffamily\raggedright #1%
+      \rule[-2.5pt]{0pt}{1pt}\vfill%
+    }%
+  }%
+  \settoheight{\distentryheight}{\usebox\distboxtmp}%
+  \settodepth{\distentrydepth}{\usebox\distboxtmp}%
+  \sbox{\distboxpurpose}{%
+    \parbox{50mm - \@modifier}{%
+      \usebox{\distboxpurpose}\\
+      \parbox[c][\distentryheight+\distentrydepth][s]{50mm - \@modifier}
+        {\vfill\scriptsize\sffamily #2\vfill}}%
+  }%
+  \sbox{\distboxdistrib}{%
+    \parbox{63.5mm - \@modifier}{\usebox{\distboxdistrib}\\
+      \usebox{\distboxtmp}}}}
+\newcommand{\anpfront}{\thispagestyle{anpfront}
+\vspace*{-35mm}\hspace*{\@titleframehsep}%
+\begin{tabular}{|c|c|c|c|c|l|l|}\hline
+  \multicolumn{4}{|c}{
+    \makebox[86mm]{
+      \rule[0mm]{0mm}{27.5mm}\raisebox{5mm}{%
+        \parbox[b]{55mm}{
+  \centering\textbf{\footnotesize\fslang@identification}\\[3.5mm]%
+          \framebox[55mm][c]{
+    \rule[0mm]{0mm}{9mm}\raisebox{3mm}{\@anptitleref}
+  }
+}\hspace{1.5mm}
+        \parbox[b]{25mm}{
+  \centering\textbf{\footnotesize\fslang@revision}\\[3.5mm]%
+          \framebox[25mm][c]{
+    \rule[0mm]{0mm}{9mm}\raisebox{3mm}{\@anptitlerev}
+  }
+}
+      }
+    }
+  } &
+  \multicolumn{3}{|c|}{
+    \makebox[91mm]{\logo@rule%
+      \hspace*{36mm}\raisebox{7.5mm}{
+        \parbox{12mm}{
+         %\textbf{AREVA Front End BG}\\
+          \textbf{AREVA EP BG}\\
+          \textbf{~~~~~~PE BU}
+}\hspace{\logo@space}\raisebox{\logo@raise}{
+  \includegraphics[height=\logo@height]{areva}
+        }
+      }
+    }
+  }\\ \cline{1-4}
+  \multicolumn{4}{|c}{
+    \rule[0mm]{0mm}{8mm}\makebox[86mm]{
+      \raisebox{2mm}{
+        \footnotesize\textbf{\fslang@pages}~\pageref{LastPage}%
+      }
+    }
+  } &
+  \multicolumn{3}{|r|}{\makebox[92.9mm][r]{}}\\ \hline
+  \multicolumn{7}{|c|}{\rule[0mm]{0mm}{4mm}}\\
+  \multicolumn{7}{|l|}{\hspace*{2.3mm}%
+    \framebox[179.0mm][c]{%
+      \parbox[b][42mm][c]{169mm}{\centering\@anptitle}
+    }
+  }\\[-1mm]
+  \multicolumn{7}{|c|}{\rule[0mm]{0mm}{1mm}}\\
+  \multicolumn{7}{|l|}{\hspace*{2.3mm}%
+    \fbox{
+      \parbox[b][28mm][t]{174mm}{%
+        \footnotesize\textbf{\fslang@info}\\\@anpinfo
+      }
+    }
+  }\\[4mm]
+  \hline
+\end{tabular}\\[3mm]
+
+\hspace*{\@titleframehsep}%
+\begin{tabular}{|c|c|c|c|c|}
+  \cline{1-2}\cline{4-5}
+  \makebox[20mm + \modifier@columnOne]{%
+    \rule[0mm]{0mm}{7.1mm}%
+    \raisebox{1.3mm}{\textbf{\footnotesize\fslang@project}}
+  } &
+  \raisebox{1.3mm}{
+    \makebox[30.5mm + \modifier@columnTwo][c]{\@anpproject}
+  } & \hspace{-2mm} &
+  \makebox[63.5mm - \@modifier][c]{\raisebox{1.3mm}{%
+    \textbf{\footnotesize\fslang@distribution}
+  }} &
+  \makebox[51.3mm - \@modifier][c]{\raisebox{1.3mm}
+    {\textbf{\footnotesize\fslang@purpose}
+  }}\\ \cline{1-2}\cline{4-5}
+  \makebox[20mm + \modifier@columnOne]{%
+    \rule[0mm]{0mm}{7.1mm}%
+    \raisebox{1.3mm}{
+      \textbf{\footnotesize\fslang@handling}
+    }
+  } &
+  \raisebox{1.3mm}{\makebox[30.5mm + \modifier@columnTwo][c]
+    {\scriptsize\@anphandling}} & \hspace*{-2mm} &
+  \raisebox{-6mm}[0mm][0mm]{\usebox{\distboxdistrib}} &
+  \raisebox{-6mm}[0mm][0mm]{\usebox{\distboxpurpose}}\\ \cline{1-2}
+  \makebox[20mm + \modifier@columnOne]{%
+    \rule[0mm]{0mm}{7.1mm}%
+    \raisebox{1.3mm}{
+      \textbf{\footnotesize\fslang@category}
+    }
+  } &
+  \raisebox{1.3mm}{\makebox[30.5mm + \modifier@columnTwo][c]
+    {\@anptype}} & \hspace*{-2mm} & &\\ \cline{1-2}
+  \makebox[20mm + \modifier@columnOne]{%
+    \rule[0mm]{0mm}{7.1mm}%
+    \raisebox{1.3mm}{
+      \textbf{\footnotesize\fslang@status}
+    }
+  } &
+  \raisebox{1.3mm}{\makebox[30.5mm + \modifier@columnTwo][c]
+    {\@anpstatus}} & \hspace*{-2mm} & &\\ \cline{1-2}\cline{4-5}
+\end{tabular}\\[5mm]
+\hspace*{\@titleframehsep}%
+\begin{tabular}{|l|c|c|c|c|}\hline
+\makebox[22.5mm][c]{\rule[0mm]{0mm}{6mm}\raisebox{1mm}
+  {\textbf{\footnotesize\fslang@roles}}} &
+\makebox[40.2mm][c]{\raisebox{1mm}
+  {\textbf{\footnotesize\fslang@names}}} &
+\makebox[23.0mm][c]{\raisebox{1mm}
+  {\textbf{\footnotesize\fslang@dates}}} &
+\makebox[29.7mm][c]{\raisebox{1mm}
+  {\textbf{\footnotesize\fslang@organizations}}} &
+\makebox[50.45mm][c]{\raisebox{1mm}
+  {\textbf{\footnotesize\fslang@signatures}}}\\ \hline
+\ifthenelse{\boolean{template@german}}{%
+\rule[0mm]{0mm}{4mm}\raisebox{0.1mm}{\footnotesize\fslang@author}   &
+\raisebox{0.1mm}{\@authorname} &
+\raisebox{0.1mm}{\@authordate} &
+\raisebox{0.1mm}{\@authororg}  &
+\raisebox{0.1mm}{\@authorsign} \\
+\rule[0mm]{0mm}{4mm}\raisebox{0.4mm}{\footnotesize\fslang@reviewer} &
+\raisebox{0.4mm}{\@reviewername} &
+\raisebox{0.4mm}{\@reviewerdate} &
+\raisebox{0.4mm}{\@reviewerorg}  & 
+\raisebox{0.4mm}{\@reviewersign} \\
+\rule[0mm]{0mm}{4mm}\raisebox{0.5mm}{\footnotesize\fslang@approver} &
+\raisebox{0.5mm}{\@approvername} &
+\raisebox{0.5mm}{\@approverdate} &
+\raisebox{0.5mm}{\@approverorg}  & 
+\raisebox{0.5mm}{\@approversign} \\
+\rule[0mm]{0mm}{4.2mm}\raisebox{1.2mm}{\footnotesize\fslang@extapprover} &
+\raisebox{1.2mm}{\@extapprovername} &
+\raisebox{1.2mm}{\@extapproverdate} &
+\raisebox{1.2mm}{\@extapproverorg}  & 
+\raisebox{1.2mm}{\@extapproversign} \\ \hline
+}{%
+\rule[0mm]{0mm}{6mm}\raisebox{1mm}{\footnotesize\fslang@author}   &
+\raisebox{1mm}{\@authorname} &
+\raisebox{1mm}{\@authordate} &
+\raisebox{1mm}{\@authororg}  & 
+\raisebox{1mm}{\@authorsign} \\
+\rule[0mm]{0mm}{6mm}\raisebox{1mm}{\footnotesize\fslang@reviewer} &
+\raisebox{1mm}{\@reviewername} &
+\raisebox{1mm}{\@reviewerdate} &
+\raisebox{1mm}{\@reviewerorg}  & 
+\raisebox{1mm}{\@reviewersign} \\
+\rule[0mm]{0mm}{6mm}\raisebox{1mm}{\footnotesize\fslang@approver} &
+\raisebox{1mm}{\@approvername} &
+\raisebox{1mm}{\@approverdate} &
+\raisebox{1mm}{\@approverorg}  & 
+\raisebox{1mm}{\@approversign} \\ \hline
+}
+\end{tabular}\\[5mm]
+\hspace*{\@titleframehsep}%
+\begin{tabular}{|c|c|c|}\cline{1-1}\cline{3-3}
+\parbox[][18mm][s]{91.3mm}{%
+  \vspace{1.5mm}\footnotesize\textbf{\fslang@release}\\\@anprelease\vfill} &
+\hspace*{-2.5mm}& 
+\ifthenelse{\boolean{template@german}}{%
+\parbox[][18mm][s]{85.7mm}{%
+\tiny\sffamily\setlength{\baselineskip}{.1mm}%
+\vfill
+\underbar{Exportkennzeichnung}\quad\makebox[24mm][l]
+  {AL: \@anpexal}ECCN: \@anpexeccn\\
+Die mit ``AL ungleich N'' gekennzeichneten G\"uter unterliegen bei der
+Ausfuhr aus der EU der europ\"aischen bzw.~deutschen
+Ausfuhrgenehmigungspflicht. Die mit ``ECCN ungleich N''
+gekennzeichneten G\"uter unterliegen der
+US--Reexportgenehmigungspflicht. Auch ohne Kennzeichen, bzw.~bei
+Kennzeichen ``AL: N'' oder ``ECCN: N'', kann sich eine
+Genehmigungspflicht, unter anderem durch den Endverbleib und
+Verwendungszweck der G\"uter, ergeben.
+\vfill
+}}{% french version
+\parbox[][18mm][s]{85.7mm}{%
+\tiny\sffamily\setlength{\baselineskip}{.1mm}%
+\vfill
+\underbar{Conformit\'e pour l'exportation}\quad\makebox[24mm][l]
+  {AL: \@anpexal}ECCN: \@anpexeccn\\
+Les produits label\'es ``AL not equal to N'' sont soumis \`a 
+l'authorisation europ\'eenne ou francaise pour l'exportation hors 
+union europ\'eenne. Les produits label\'es ``ECCN not equal N'' sont 
+soumis \`a l'authorisation de r\'e-exportation americaine.
+M\^eme sans label, ou avec ``AL: N'' ou ``ECCN: N'', une authorisation 
+peut \^etre demand\'ée en raison du cadre de l'activit\'e 
+pour laquelle les produits vont \^etre utilis\'es.
+\vfill
+}}\\ \cline{1-1}\cline{3-3}
+\parbox{60mm}{\scriptsize\setlength{\baselineskip}{.1mm}%
+  \fslang@regionsnote}\hfill%
+\parbox{20mm}{\scriptsize\makebox[13mm][r]
+  {\fslang@france} \@anpregionfrance\\%
+\makebox[13mm][r]{\fslang@usa} \@anpregionusa\\%
+\makebox[13mm][r]{\fslang@germany} \@anpregiongermany}\hspace*{4mm} &
+\hspace*{-3mm}& \parbox[][15mm][s]{85.7mm}{%
+\tiny\sffamily\setlength{\baselineskip}{.1mm}%
+\vfill
+\underbar{Export classification}\quad\makebox[24mm][l]
+  {AL: \@anpexal}\hspace{1mm}ECCN: \@anpexeccn\\
+Goods labeled with ``AL not equal to N'' are subject to European or
+German export authorization when being exported out of the EU. Goods
+labeled with ``ECCN not equal N'' are subject to US reexport
+authorization. Even without a label, or with label ``AL: N'' or
+``ECCN: N'', authorization may be required due to the final
+whereabouts and purpose for which the goods are to be used.
+\vfill
+}\\ \cline{1-1}\cline{3-3}
+\end{tabular}\\[5mm]
+\hspace*{\@titleframehsep}%
+\fbox{\parbox{185.4mm}{%
+\scriptsize\sffamily\setlength{\baselineskip}{.12mm}%
+\fslang@legalnote}}\\[0mm]
+\newlength{\@stamphsep}\setlength{\@stamphsep}{\@titleframehsep+0.5mm}
+\hspace*{\@stamphsep}\mbox{\@stamp}}
+\renewcommand\appendix{
+   \@ifundefined{@chapapp}
+      {\clearpage}
+      {\if@openright\cleardoublepage\else\clearpage\fi}
+   \global\@topnum\z@
+   \setcounter{reppages}{\value{page}}
+   \addtocounter{reppages}{-1}
+   \ifpdf
+      \immediate\write\@auxout{\string
+      \newlabel{count\theappendix}{{}{\thereppages}{}{}{}}}
+   \else
+      \immediate\write\@auxout{\string
+      \newlabel{count\theappendix}{{}{\thereppages}}}
+      \fi
+   \refstepcounter{appendix}
+   \@ifundefined{@chapapp}
+     {\setcounter{section}{\theappendix}}
+     {\setcounter{chapter}{\theappendix}\setcounter{section}{0}}
+   \setcounter{subsection}{0}
+   \setcounter{subsubsection}{0}
+   \@afterindentfalse
+   \secdef\@appendix\@sappendix}
+\def\@appendix[#1]#2{\typeout{\appendixname\space\theappendix.}
+   \ifnum \c@secnumdepth >\m@ne
+      \@ifundefined{@chapapp}
+         {\addcontentsline{toc}{section}%
+             {\appendixname\space\theappendix\quad#1}}
+         {\addcontentsline{toc}{chapter}%
+             {\appendixname\space\theappendix\quad#1}}
+   \else
+      \@ifundefined{@chapapp}
+         {\addcontentsline{toc}{section}%
+            {\appendixname\space\theappendix\quad#1}}
+         {\addcontentsline{toc}{chapter}%
+            {\appendixname\space\theappendix\quad#1}}
+   \fi
+   \@ifundefined{@chapapp}{\sectionmark{#1}}{\chaptermark{#1}}
+   \addtocontents{lof}{\protect\addvspace{10\p@}}%
+   \addtocontents{lot}{\protect\addvspace{10\p@}}%
+   \if@twocolumn
+      \@topnewpage[\@makesappendixhead{#2}]%
+   \else
+      \@makesappendixhead{#2}%
+      \@afterheading
+   \fi}
+\def\@sappendix#1{\typeout{\appendixname\space\theappendix.}
+   \if@twocolumn
+      \@topnewpage[\@makesappendixhead{#1}]%
+   \else
+      \@makesappendixhead{#1}%
+      \@afterheading
+   \fi}
+\def\@makesappendixhead#1{%
+   {\parindent \z@ \raggedsection
+      \normalfont
+      \@ifundefined{@chapapp}{\size@section}{\size@chapter}
+      \sectfont\appendixname\space\theappendix\quad#1\par
+      \nobreak\@ifundefined{@chapapp}{}{\chapterheadendvskip}
+   }}
+\newenvironment{anpchanges}{\clearpage
+  \vspace*{-2mm}
+  {\sffamily\bfseries\Large \begin{center}%
+    \fslang@summaryofchanges\end{center}}
+  \setlength{\tabcolsep}{2mm}
+  \renewcommand{\arraystretch}{2}
+  \begin{longtable}{|c|p{25mm}|p{110mm}|p{2mm}}
+    \cline{1-3}
+    \makebox[21mm][c]{\sffamily\bfseries\fslang@socrevision} &
+    \makebox[24mm][c]{\sffamily\bfseries\fslang@socdate} &
+    \makebox[100mm][c]{\sffamily\bfseries\fslang@socnotes} &
+    \\\cline{1-3}\endfirsthead
+    \makebox[21mm][c]{\sffamily\bfseries\fslang@socrevision} &
+    \makebox[24mm][c]{\sffamily\bfseries\fslang@socdate} &
+    \makebox[100mm][c]{\sffamily\bfseries\fslang@socnotes} &
+    \\\cline{1-3}\endhead
+  }{\end{longtable}
+  \setcounter{table}{0}
+}
+\newenvironment{shortcuts}{\clearpage
+
+  {\sffamily\bfseries\Large \fslang@abbrev}
+  \vspace{1em}
+
+\setlength{\tabcolsep}{3mm}
+\begin{longtable}{p{47mm}@{}p{103mm}}
+{\Large\sf \fslang@abbrevabb} &
+{\Large\sf \fslang@abbrevexp}\\[0.5em] \hline \endfirsthead\\
+{\Large\sf \fslang@abbrevabb} &
+{\Large\sf \fslang@abbrevexp}\\[0.5em] \hline \endhead\\
+}{\end{longtable}}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+      \refstepcounter{chapter}%
+      \typeout{\@chapapp\space\thechapter.}%
+      \addcontentsline{toc}{chapter}%
+         {\protect\numberline{\thechapter}#1}%
+   \else
+      \addcontentsline{toc}{chapter}{#1}
+   \fi
+   \chaptermark{#1}%
+   \if@twocolumn
+      \@topnewpage[\@makechapterhead{#2}]%
+   \else
+      \@makechapterhead{#2}%
+      \@afterheading
+   \fi}
+\def\@makechapterhead#1{
+  {\size@chapter{\sectfont
+    \@hangfrom{\ifnum \c@secnumdepth >\m@ne%
+                  \chapterformat\fi}%
+              {\raggedsection \interlinepenalty \@M #1\par}}
+    \nobreak\chapterheadendvskip
+  }}
+\def\@makeschapterhead#1{
+  {\parindent \z@ \raggedsection
+    \normalfont
+    \size@chapter\sectfont #1\par
+    \nobreak\chapterheadendvskip
+  }}
+\newenvironment{acknowledgments}{%
+     \if@twocolumn
+       \section*{\fslang@acknowledgment}%
+     \else
+       \null\vfil
+       \small
+       \begin{center}%
+         {\sectfont \fslang@acknowledgment\vspace{-.5em}\vspace{\z@}}%
+       \end{center}%
+       \quote
+     \fi}
+     {\if@twocolumn\else\endquote\fi}
+     {\par\vfil\null}
+\renewenvironment{abstract}{%
+     \if@twocolumn\if@abstrt
+       \section*{\abstractname}\fi%
+     \else
+       \if@abstrt
+       \null\vfil
+       \small
+       \begin{center}%
+         {\sectfont \abstractname\vspace{-.5em}\vspace{\z@}}%
+       \end{center}\fi%
+       \quote
+     \fi}
+     {\if@twocolumn\else\endquote\fi}
+     {\par\vfil\null}
+\endinput
+%%
+%% End of file `areva_np.sty'.

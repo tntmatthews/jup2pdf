@@ -1,0 +1,314 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#Analytical Methodology\n",
+    "----- TO BE DELETED ------  \n",
+    "The purpose of this notebook is to provide a starter calculation file. It contains elements which are intended to provide examples of constructs used for a typical calculation file. Cells should be modified and deleted as appropriate when developing the calculation file.\n",
+    "\n",
+    "This section shall provide or reference a description of the method\n",
+    "used to determine the output (e.g., a brief statement with the principal\n",
+    "formulas could be provided with reference to another document\n",
+    "containing a detailed description). This section shall explain what the\n",
+    "calculation is intended to do and how the conclusion is derived. As\n",
+    "applicable, this section shall include the sources of data and equations\n",
+    "(with units, as applicable), the results of literature searches, or other\n",
+    "background data as needed.\n",
+    "\n",
+    "In addition, this section shall identify general and/or specific\n",
+    "requirements originating from the regulatory bases and company- and\n",
+    "sector-specific requirements that are required to be met to satisfy the\n",
+    "stated purpose(s). Calculations that are required to be prepared\n",
+    "according to specific NRC-approved methodology should identify and\n",
+    "reference the appropriate approved topical reports and other relevant\n",
+    "methodology documents.\n",
+    "\n",
+    "This section shall identify any restrictions, requirements, or deviations\n",
+    "associated with the methodology.\n",
+    "*See Attachment 7 of Reference \\cite{0402-01} (and Reference \\cite{0405-35} for Fuels) for\n",
+    "information concerning Methodology Deviations.  \n",
+    "----- END TO BE DELETED ------\n",
+    "  \n",
+    "## Variable Name Convention and Acronyms\n",
+    "Table \\ref{table:variablenames} and \\ref{table:acronyms} describe the variable, functions and acronyms used in the code that follows. \n",
+    "\n",
+    "\\begin{table}[bh]\n",
+    "\\centering\n",
+    "\\caption{Variable and Function Names}\n",
+    "\\label{table:variablenames}\n",
+    "\\begin{tabular}{|p{1in}|p{1.5in}|p{3.5in}|} \\hline\n",
+    "Variable  & Description  & Notes \\\\  \\hline\n",
+    "T         & Temperature  & F     \\\\  \\hline\n",
+    "P         & Pressure     & psia  \\\\  \\hline\n",
+    "\\end{tabular}\n",
+    "\\end{table}\n",
+    "\n",
+    "\n",
+    "\\begin{table}[bh]\n",
+    "\\centering\n",
+    "\\caption{Acronyms}\n",
+    "\\label{table:acronyms}\n",
+    "\\begin{tabular}{|p{1in}|p{1.5in}|p{3.5in}|} \\hline\n",
+    "Acronynm & Description               & Notes        \\\\  \\hline\n",
+    "k        & Thermal conductivity      & W/(m K). Variable equivalents are tc or tc\\_adj. \\\\  \\hline\n",
+    "TD       & Theoretical Densityof UO2 & 10.96 g/cc for UO2 \\\\ \\hline\n",
+    "\\end{tabular}\n",
+    "\\end{table}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\\clearpage\n",
+    "\n",
+    "#Assumptions\n",
+    "----- TO BE DELETED ------  \n",
+    "This section shall clearly state assumptions and modeling\n",
+    "simplifications, including specific identification of those assumptions\n",
+    "requiring further verification. If no assumptions are used, then the\n",
+    "calculation should state, \"No assumptions or Modeling Simplifications\n",
+    "(if applicable) were used.\" Basic methodology assumptions already\n",
+    "documented in referenced documents or guidelines do not need to be\n",
+    "repeated in the calculation package.  \n",
+    "----- END TO BE DELETED ------  \n",
+    "\n",
+    "##Unverified Assumptions\n",
+    "##Justified Assumptions\n",
+    "##Modelling Simplifications\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\\clearpage\n",
+    "\n",
+    "#Design Inputs\n",
+    "----- TO BE DELETED ------  \n",
+    "This section may cite the applicable design inputs, including those\n",
+    "criteria, parameters, design bases, regulatory requirements, or other\n",
+    "design requirements upon which detail final design is based.\n",
+    "Depending on the scope and complexity of the calculation, design\n",
+    "inputs may be more appropriately identified throughout the calculation\n",
+    "than in one section. Therefore this section may state that Design Inputs\n",
+    "are identified and addressed throughout the applicable sections of this\n",
+    "calculation.  \n",
+    "----- END TO BE DELETED ------  "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#Computer Usage\n",
+    "----- TO BE DELETED ------  \n",
+    "This section shall identify any computer software, including computer\n",
+    "types, computer software program (i.e., names), revision identification,\n",
+    "operating system, and inputs/outputs. This section shall identify all computer files by filename and date and\n",
+    "time used in this calculation. These may be listed in a separate section\n",
+    "and/or the list of files may be stored electronically (e.g., cstor,\n",
+    "ColdStor) and referenced from this section.  \n",
+    "----- END TO BE DELETED ------  \n",
+    "\n",    
+    "##Software\n",
+    "This document is deveoped with the Jupyter Notebook which allows for the creation and sharing of documents that contain live code, equations, visualization and explanatory text. The typical set of scientific python packages are used with Jupyter for the data analysis that follows. Also, plots will be displayed within the notebook itself via the inline command below.\n",
+    "\n",
+    "The jup2pdf module was developed during the development of this document and used to convert the Jupyter notebook into a pdf document for this FS1 document (see Section \\ref{sec:Document_Creation}).  \n",
+    "\n",    
+    "----- TO BE DELETED ------  \n",
+    "Information for markdown editing (used by jupyter) is available at this [website](https://daringfireball.net/projects/markdown/syntax).  \n",
+    "----- END TO BE DELETED ------ ",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "#         1         2         3         4         5         6         7         8\n",
+    "#12345678901234567890123456789012345678901234567890123456789012345678901234567890\n",
+    "import sys\n",
+    "import os\n",
+    "import shutil\n",
+    "import pandas as pd   # dataframes used to organize and analyze the data\n",
+    "import matplotlib\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import scipy  # only stats pacakges used\n",
+    "from scipy import stats\n",
+    "from IPython.display import Latex, display\n",
+    "import jup2pdf\n",
+    "\n",
+    "print( \"-- System Information --\")\n",
+    "print( \"Operating System:  %s\"%(sys.platform))\n",
+    "print( \"Hostname:  %s \"%(os.environ['HOSTNAME']))\n",
+    "print( \"python:  %s...\"%sys.version[:65])\n",
+    "print( \"pandas:  %s\\nmatplotlib:  %s\\nnumpy:  %s\\nscipy:  %s\\njup2pdf:  %s\"%\\\n",
+    "      (pd.__version__, matplotlib.__version__, np.__version__, scipy.__version__, \\\n",
+    "       jup2pdf.__version__))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##Plot Creation\n",
+    "The following code controls all plots created in the cells that follow. The inline plots are first configured and then a helper function called \"makeplot\" is provided. The parameter bShowInline must be set to False to avoid a duplicate plot being added to the resulting document."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "bShowInline = False  # Set = False for document generation\n",
+    "\n",
+    "%config InlineBackend.figure_format = 'png'\n",
+    "%config InlineBackend.rc = {'font.size': 10, 'figure.figsize': (7.5, 4.5), \\\n",
+    "                    'figure.facecolor': 'white', 'savefig.dpi': 300, \\\n",
+    "                    'figure.subplot.bottom': 0.125, 'figure.edgecolor': 'white'}\n",
+    "%matplotlib inline\n",
+    "\n",
+    "bShowInline = True     # for convenient one time defination for all jup2pdf.makeplot calls"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "----- TO BE DELETED ------  \n",
+    "The generation of Figure \\ref{fig:example} below is provided for new matplotlib users to reference as an aid. Also, the [matplotlib gallery](http://matplotlib.org/gallery.html) is an excellant source of example code.\n",
+    "----- END TO BE DELETED ------  \n",
+    "##Software\n",
+    "This document is deveoped with the Jupyter Notebook which allows for the creation and sharing of documents that contain live code, equations, visualization and explanatory text. The typical set of scientific python packages are used with Jupyter for the data analysis that follows. Also, plots will be displayed within the notebook itself via the inline command below.\n",
+    "\n",
+    "The jup2pdf module was developed during the development of this document and used to convert the Jupyter notebook into a pdf document for this FS1 document (see Section \\ref{sec:Document_Creation})."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "# CELL TO BE DELETED - Example Plot Code\n",
+    "xdata = np.arange(0,2*np.pi, np.pi/10)\n",
+    "plt.plot(xdata,np.sin(xdata), linestyle='--',color='red',marker='o',label='sin(x)')\n",
+    "plt.plot(xdata,np.cos(xdata), 'bo-',label='cos(x)')\n",
+    "plt.xlabel('Radians')\n",
+    "plt.ylabel('Y-Value')\n",
+    "axes = plt.gca()\n",
+    "axes.set_xlim([0,2*np.pi])\n",
+    "axes.set_ylim([-1.,1.])\n",
+    "plt.xlabel('Radians',fontsize = 12)\n",
+    "plt.ylabel('Y-Value',fontsize = 12)\n",
+    "plt.legend(loc=1,ncol=2,bbox_to_anchor=(1.0,1.0), numpoints=1, fontsize=8)\n",
+    "jup2pdf.makeplot(plt,'example','Example Plot - CODE CELL ABOVE TO BE DELETED', bShowInline)\n",
+    "# END CELL TO BE DELETED"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##Computer Files\n",
+    "The following files are stored in cstor for this document:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false,
+    "scrolled": true
+   },
+   "outputs": [],
+   "source": [
+    "!cstor -d  \"/mecheng/calc/FS1/002/3894\" ls -ClRv > \"cstorlist.txt\"\n",
+    "!cat cstorlist.txt"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\\clearpage\n",
+    "\n",
+    "#Calculations\n",
+    "----- TO BE DELETED ------  \n",
+    "This section shall include calculations, along with explanatory text and diagrams, leading to the results, including mathematical operations, etc. This section should describe the general process used to perform the calculation.  \n",
+    "----- END TO BE DELETED ------"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\\clearpage\n",
+    "\n",
+    "#Results\\label{subsec:results}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\\clearpage\n",
+    "\n",
+    "#Appendix A - Document Creation\\label{sec:Document_Creation}\n",
+    "The jup2pdf python module has been developed to allow for any jupyter notebook to be rendered into a FS1 document. The document attributes defined in the .yml file (stored in cstor) are expanded into a template for the latex which preceds that defined from the jupyter notebook above.\n",
+    "\n",
+    "The cell that follows will create the pdf (this cell can be set as a raw text file in the Jupyter notebook for times when generating a pdf is not desired).\n",
+    "\n",
+    "NOTEBOOK note:\n",
+    "The document has to be manually saved before generating the document pdf to assure that the current content is represented in the generated pdf. Therefore, the individual cell below which generates the doc should be rerun after calculating all other cells and saving the document."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "jup2pdf.gendoc( '%{{ doc_name %}}')\n",
+    "!ls -l %{{ doc_name %}}.pdf"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.4.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
