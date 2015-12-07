@@ -2,6 +2,7 @@ from setuptools import setup
 
 setup(name='jup2pdf',
     version='0.1',
+    package_dir={'jup2pdf': ''},    
     packages=['jup2pdf'],
     package_data={'latex': ['latex/*'],
         'latex/areva': ['latex/areva/*'],'latex/jupyter': ['latex/jupyter/*']},
