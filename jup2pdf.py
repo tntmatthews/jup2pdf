@@ -248,7 +248,7 @@ def makeplot( plt, figlabel, figcaption, bShowInline=False, relFileDir='.'):
     return display(Latex(strLatex)) 
 
 
-if __name__ == '__main__':
+def main():
 
     str_desc = "Utility for rolling up a jupyter notebook into an AREVA document\n"
 
@@ -269,3 +269,6 @@ if __name__ == '__main__':
     else:
         gendoc(args.nb_id, args.config_name, args.verbose, args.debug, \
             args.skip_templategen, args.skip_nbconvert)
+
+if __name__ == '__main__':
+    main()
