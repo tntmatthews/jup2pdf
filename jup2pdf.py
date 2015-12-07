@@ -1,0 +1,271 @@
+#!/usr/bin/env python
+'''
+For development of AREVA calculation notebooks with the Jupyter notebook.
+The jup2pdf package will provide quick production of an AREVA document based on
+predefined templates (for instance, FS1 document template).
+'''
+
+import os
+import shutil
+import subprocess
+import argparse
+import yaml
+from jinja2 import Environment, PackageLoader
+
+__author__  = "M. Todd Matthews (todd.matthews@areva.com)"
+__version__ = '0.0.1'
+
+def initdoc(type, nb_id, template_dir, verbose=False, debug=False):
+    '''
+    Create an initial yaml and ipynb file for a new document in order
+    to help the user bootstrap a new document project.
+    '''
+    if template_dir == None:
+        template_dir = './Resources/latex'
+    if type == None:
+        type = 'FS1'
+
+    docname = '%s-%s'%(type,nb_id)  # Assumption based on FS1 and 32 docs
+
+    # Make sure files don't already exists
+    proj_files = [docname+".yml", docname+".ipynb"]
+    for fname in proj_files:
+        if os.path.isfile(fname):
+            print("ERROR: File %s exist. Must remove all existing"%fname + \
+                 " files for this document if a new project is intended.")
+            return
+
+    env = Environment(
+        block_start_string = '%{',
+        block_end_string = '%}',
+        variable_start_string = '%{{',
+        variable_end_string = '%}}',
+        loader=PackageLoader(__name__, template_dir))
+
+    yamltemplfname = 'docattribs_yml.jinja'
+    yamltempl = env.get_template(yamltemplfname)
+    output = yamltempl.render(doc_type=type, doc_id=nb_id)
+    with open(docname+".yml", 'w') as f:
+        f.write(output)
+    if verbose:
+        print("%s rendered from %s"%(docname+".yml",yamltemplfname))
+
+    jup_templfname = '%s_ipynb.jinja'%type
+    jup_templ = env.get_template(jup_templfname)
+    output = jup_templ.render(doc_name=docname)
+    with open(docname+".ipynb", 'w') as f:
+        f.write(output)
+    if verbose:
+        print("%s rendered from %s"%(docname+".ipynb",jup_templfname))
+
+    shutil.copyfile(template_dir+'/references.bib', docname+'.bib')
+    shutil.copyfile(template_dir+'/distribution_list_release.tex', \
+        docname+'_dist.tex')
+
+
+def gendoc(nb_id, config_name=None, \
+    verbose=False, debug=False, skip_templategen=False, skip_nbconvert=False ):
+    '''
+    Generate a latex and then AREVA document in the form of a pdf that includes the
+    jupyter content sandwiched with cover page/TOC and refences/distribution list
+    depending on how the template is defined.
+    '''
+
+    if config_name==None:
+        config_name = nb_id + ".yml"
+
+    # make sure needed files exist
+    reqfiles = [nb_id+'.ipynb', config_name]
+    for fname in reqfiles:
+        if not os.path.isfile(fname):
+            print("WARNING: File %s not found"%fname)
+
+    #gather additional configuration info from YAML file
+    with open(config_name,'r') as file_obj:
+        yamlconfig = yaml.load(file_obj)
+
+    docname = yamlconfig["doc"]["type"]+"-"+yamlconfig["doc"]["id"]
+
+    if not skip_templategen:
+        # render the template to obtain the main LaTeX file
+        env = Environment(
+            block_start_string = '%{',
+            block_end_string = '%}',
+            variable_start_string = '%{{',
+            variable_end_string = '%}}',
+            loader=PackageLoader(__name__, yamlconfig["template"]["dir"]))
+
+        outertex_tmpl = env.get_template(yamlconfig["template"]["name"])
+        output = outertex_tmpl.render(doc=yamlconfig["doc"], jupyter_name=nb_id)
+        with open(docname+".tex", 'w') as f:
+            f.write(output)
+        if verbose:
+            print("%s rendered from %s"%(docname+".tex",yamlconfig["template"]["name"]))
+
+    # seperate out the preamble code from the document body
+    if skip_nbconvert: 
+        if not os.path.isfile(nb_id + "_jup.tex"):
+            print("%s_jup.tex not found. nbconvert run despite -s option"% \
+                (nb_id))
+            skip_nbconvert = False
+
+    jup2tex(nb_id, skip_nbconvert) 
+
+    # riplatex.jup2tex will produce 2 files
+    assert( os.path.isfile(nb_id + "_pre.tex") )
+    assert( os.path.isfile(nb_id + "_main.tex") )
+
+    # build up the environment based on the yaml file env var defs for path and texinputs
+    my_env = os.environ.copy()
+    newpath = ''
+    for pathitem in yamlconfig["path"]:
+        newpath = newpath + pathitem + ":"
+    my_env['PATH'] = newpath + my_env['PATH'] + ":."
+
+    newtexinputs = ''
+    my_env['TEXINPUTS'] = ''
+    for texinputsitem in yamlconfig["texinputs"]:
+        if texinputsitem[0] != '/': # relative to module
+            texinputsitem = os.path.join(os.path.dirname(__file__), texinputsitem)
+        newtexinputs = newtexinputs + texinputsitem + ":"
+    my_env['TEXINPUTS'] = newtexinputs + my_env['TEXINPUTS'] + ":."
+
+    # Run through the latex commands to execute
+    if not os.path.isfile(docname+".tex"):
+        print ("%s not found"%docname+".tex")
+    else:
+        if not debug:
+            log2name = docname+".log2"
+            if os.path.isfile(log2name):
+                os.remove(log2name)
+        for command in yamlconfig["commands"]:
+            cmd2run = "%s %s"%(command,docname)
+            if not debug:
+                 cmd2run += ' >> %s.log2'%docname
+            if verbose:
+                print ("Current dir: %s"%os.getcwd())
+                print( "Launching: %s"%cmd2run )
+            p = subprocess.Popen(cmd2run, env=my_env, shell=True)
+            p.wait()
+            if verbose:
+                print( "Completed: %s"%cmd2run )
+
+    if not debug: # Delete intermediate files
+        fileext2del = ['.aux','_dist.aux', '.log', '.log2', '.out', '.toc', '.bbl', \
+            '.blg', '.cb', '.cb2', '_jup.tex','_main.tex','_pre.tex', '.tex']
+
+        for ext2del in fileext2del:
+            os.remove(docname+ext2del)
+
+def jup2tex(filebase, skip_nbconvert=False, bVerbose=False):
+    '''
+    Convert a ipython notebook file to latex file
+    split into two files which can be incorporated into a larger latex project.
+
+    filebase - base file to be processed. Assume that basename is used for the notebook
+    (.ipynb) file and latex files to be processed.
+
+    Creates two latex files with filebase + "_pre.tex" and "_main.tex".
+
+    Details:
+    1) Creates the tex file from the ipynb file
+    2) Pull all lines betweeen documentclass{...} and begindocument for preamble
+    3) Pull all lines between maketitle and \end{document}
+    '''
+    if not skip_nbconvert:
+        strcmd = "ipython nbconvert --profile=nbserver --to latex --output=%s_jup.tex %s.ipynb"% \
+            (filebase,filebase)
+        subprocess.call(strcmd, shell=True)
+
+    f = open(filebase+"_jup.tex")
+    lines = f.readlines()
+    f.close()
+
+    preamble = ''
+    mainbody = ''
+    b_preamble = False
+    b_main = False
+    for line in lines:
+        linestripped = line.strip()
+        if linestripped.startswith("\documentclass"):
+            b_preamble = True
+        elif linestripped.startswith("\\begin{document}"):
+            b_preamble = False
+        elif linestripped.startswith("\maketitle"):
+            b_main = True
+        elif linestripped.startswith("\end{document}"):
+            b_main = False
+        elif linestripped.startswith("\geometry{") or \
+            linestripped.startswith("\\usepackage{geometry}") or \
+            linestripped.startswith("% Slightly bigger margins than the latex defaults"):
+            pass # ignore line
+        else:
+            if b_preamble:
+                preamble = preamble + line
+            if b_main:
+                mainbody = mainbody + line
+
+
+    prefile = filebase+"_pre.tex"
+    f = open(prefile, "w")
+    f.write(preamble)
+    f.close()
+    if bVerbose:
+        print("[riplatex] Writing %s bytes to %s"%(os.path.getsize(prefile), prefile))
+
+    mainfile = filebase + "_main.tex"
+    f = open(mainfile, "w")
+    f.write(mainbody)
+    f.close()
+    if bVerbose:
+        print("[riplatex] Writing %s bytes to %s"%(os.path.getsize(mainfile), mainfile))
+
+
+from IPython.display import Latex, display
+def makeplot( plt, figlabel, figcaption, bShowInline=False, relFileDir='.'):
+    """
+    Creates plot file and LaTeX. Will also show plot inline if bShowInline.
+    """
+    #common plot commands
+    plt.tick_params(axis='both',which='major',labelsize=10)
+    
+    figname = relFileDir + '/' + figlabel+'.png'
+    plt.savefig(figname)
+
+    if bShowInline:
+        plt.title(figcaption)
+        plt.show()
+    else:
+        plt.close()
+        
+    strLatex="""
+    \\begin{figure}[bh]
+    \centering
+        \includegraphics[totalheight=10.0cm]{%s}
+        \caption{%s}
+        \label{fig:%s}
+    \end{figure}"""%(figname, figcaption, figlabel) 
+    return display(Latex(strLatex)) 
+
+
+if __name__ == '__main__':
+
+    str_desc = "Utility for rolling up a jupyter notebook into an AREVA document\n"
+
+    parser = argparse.ArgumentParser(description=str_desc)
+    parser.add_argument('nb_id', help='Basename for Notebook files')
+    parser.add_argument("-i", "--init", help='Create a new document project', action='store_true', default=False)
+    parser.add_argument("--type", help='Document type. FS1 or 32')
+    parser.add_argument("--template_dir", help='Directory for Templates. Default=./Resources/latex')
+    parser.add_argument("-a","--config_name", help='YAML based config file. Default: docattribs.yml') # default added after parse_args
+    parser.add_argument("-S", "--skip_templategen", help='Skip the population of outer TeX file. Fields to be added manually.', action='store_true', default=False)
+    parser.add_argument("-s", "--skip_nbconvert", help='Skip the nbconvert conversion of ipynb. Use existing tex file.', action='store_true', default=False)
+    parser.add_argument("-v", "--verbose", help='Display status to std output', action='store_true', default=False)
+    parser.add_argument("-d", "--debug", help='Output all latex generation info to screen. Otherwise >> .log2', action='store_true', default=False)
+    args = parser.parse_args()
+
+    if args.init:
+        initdoc(args.type, args.nb_id, args.template_dir, args.verbose, args.debug)
+    else:
+        gendoc(args.nb_id, args.config_name, args.verbose, args.debug, \
+            args.skip_templategen, args.skip_nbconvert)
