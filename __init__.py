@@ -1,1 +1,1 @@
-from jup2pdf import *
+from jup2pdf.jup2pdf import *
